@@ -1,0 +1,36 @@
+{
+    "name": "oreore-mode",
+    "version": "0.0.1",
+    "author": "YOUR NAME",
+    "license": "YOUR LICENSE",
+    "description": "A tiny programming language that supports Language Server Protocol",
+  
+    "engines": {
+      "vscode": "^1.52.1"
+    },
+    "main": "./extension.js",
+    "activationEvents": [
+      "onLanguage:oreore"
+    ],
+    "contributes": {
+      "languages": [
+        {
+          "id": "oreore",
+          "extensions": [
+            ".ore"
+          ]
+        }
+      ],
+      "semanticTokenTypes": [
+        {
+          "id": "templateType",
+          "superType": "type",
+          "description": "A template type."
+        }
+      ]
+    },
+    "dependencies": {
+      "vscode-languageclient": "^7.0.0"
+    },
+    "private": true
+  }
