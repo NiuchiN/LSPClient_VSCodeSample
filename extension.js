@@ -5,9 +5,19 @@ const languageclient = require("vscode-languageclient");
 let client;
 function activate(context) {
     try {
-        let serverExe = context.extensionPath + "/bin/Debug/JsonRpcServer.exe";
-        let dotnetExe = "dotnet";
-        let dllPath = context.extensionPath + "/bin/Debug/net6.0/JsonRpcSample.dll"
+        const conf  = vscode.workspace.getConfiguration('Settings');
+        let exePath = conf.get('ServerExePath');
+        if (exePath == null) {
+            throw new Error('Language Server までのパスを指定してください');
+            //exePath = context.extensionPath + "/bin/Debug/JsonRpcServer.exe";           
+        }
+        const serverOptions = {
+            command: exePath,
+            args: [
+                "stdio"
+            ]
+        };
+        // jsのTEST server 用
         // const serverOptions = {
         //         command: "node",
         //         args: [
@@ -15,12 +25,10 @@ function activate(context) {
         //                       "--language-server"
         //         ]
         // };
-        const serverOptions = {
-            command: serverExe,
-            args: [
-                "stdio"
-            ]
-        };
+
+        // DLL実施用
+        //let dotnetExe = "dotnet";
+        //let dllPath = context.extensionPath + "/bin/Debug/net6.0/JsonRpcSample.dll"
         // const serverOptions = {
         //     command: dotnetExe,
         //     args: [
@@ -38,7 +46,7 @@ function activate(context) {
         client = new languageclient.LanguageClient("oreore-mode", serverOptions, clientOptions);
         context.subscriptions.push(client.start());
     } catch (e) {
-        vscode.window.showErrorMessage("oreore-mode couldn't be started.");
+        vscode.window.showErrorMessage("oreore-mode couldn't be started.", e.message);
     }
 }
 

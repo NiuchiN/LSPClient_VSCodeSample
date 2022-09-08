@@ -27,7 +27,17 @@
           "superType": "type",
           "description": "A template type."
         }
-      ]
+      ],
+      "configuration": {
+        "title": "Language Server Exe File Path",
+        "properties": {
+          "Settings.ServerExePath" :{
+            "type":"string",
+            "description": "LSPServerのexeのファイルパスを指定してください。",
+            "default": null
+          }
+        }
+      }
     },
     "dependencies": {
       "vscode-languageclient": "^7.0.0"
