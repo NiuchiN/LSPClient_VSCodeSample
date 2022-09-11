@@ -4,43 +4,43 @@
     "author": "YOUR NAME",
     "license": "YOUR LICENSE",
     "description": "A tiny programming language that supports Language Server Protocol",
-  
     "engines": {
-      "vscode": "^1.52.1"
+        "vscode": "^1.52.1"
     },
     "main": "./extension.js",
     "activationEvents": [
-      "onLanguage:oreore"
+        "onLanguage:oreore"
     ],
     "contributes": {
-      "languages": [
-        {
-          "id": "oreore",
-          "extensions": [
-            ".ore"
-          ]
+        "languages": [
+            {
+                "id": "oreore",
+                "extensions": [
+                    ".ore"
+                ]
+            }
+        ],
+        "semanticTokenTypes": [
+            {
+                "id": "templateType",
+                "superType": "type",
+                "description": "A template type."
+            }
+        ],
+        "configuration": {
+            "title": "Language Server Exe File Path",
+            "properties": {
+                "Settings.ServerExePath": {
+                    "type": "string",
+                    "description": "LSPServerのexeのファイルパスを指定してください。",
+                    "default": null
+                }
+            }
         }
-      ],
-      "semanticTokenTypes": [
-        {
-          "id": "templateType",
-          "superType": "type",
-          "description": "A template type."
-        }
-      ],
-      "configuration": {
-        "title": "Language Server Exe File Path",
-        "properties": {
-          "Settings.ServerExePath" :{
-            "type":"string",
-            "description": "LSPServerのexeのファイルパスを指定してください。",
-            "default": null
-          }
-        }
-      }
     },
     "dependencies": {
-      "vscode-languageclient": "^7.0.0"
+        "vsce": "^2.11.0",
+        "vscode-languageclient": "^7.0.0"
     },
     "private": true
-  }
+}
